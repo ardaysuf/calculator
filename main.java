@@ -1,10 +1,12 @@
+package calculator;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Interface extends JFrame {
+public class Calculator extends JFrame {
 
-    public Interface() {
+    public Calculator() {
         setTitle("Calculator");
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,8 +104,8 @@ public class Interface extends JFrame {
     }
 
     public static void main(String[] args) {
-        Interface inf = new Interface();
-        inf.setVisible(true);
+        Calculator cal = new Calculator();
+        cal.setVisible(true);
     }
 
 }
