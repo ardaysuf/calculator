@@ -76,8 +76,8 @@ public class Calculator extends JFrame {
                     }
                     else if(screen.getText().contains("/")&&screen.getText().contains("=")){
                         int indis=screen.getText().indexOf("/");
-                        int num1=Integer.parseInt(screen.getText().substring(0,indis));
-                        int num2=Integer.parseInt(screen.getText().substring(indis+1,screen.getText().length()-1));
+                        double num1=Integer.parseInt(screen.getText().substring(0,indis));
+                        double num2=Integer.parseInt(screen.getText().substring(indis+1,screen.getText().length()-1));
                         double div=num1/num2;
                         screen.setText(Double.toString(div));
                     }
