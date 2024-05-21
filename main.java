@@ -5,6 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
+    
+    public static int equalsSignCounter(String str){
+        int esC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='=') esC++;
+        }
+        return esC;
+    }
 
     public Calculator() {
         setTitle("Calculator");
@@ -47,7 +55,7 @@ public class Calculator extends JFrame {
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String buttonText = ((JButton)e.getSource()).getText();
-                    if(buttonText!="<")
+                    if(buttonText!="<"&&equalsSignCounter(screen.getText())<1)
                         screen.setText(screen.getText()+buttonText);
                     else {
                         String deletedText=screen.getText().substring(0,screen.getText().length()-1);
