@@ -30,6 +30,7 @@ public class Calculator extends JFrame {
         JTextField screen=new JTextField();
         screen.setPreferredSize(new Dimension(240,60));
         screen.setEditable(false);
+        screen.setFont(new Font("Arial",Font.PLAIN,20));
         gbc.gridx=0;
         gbc.gridy=0;
         gbc.gridwidth=4;
@@ -61,38 +62,82 @@ public class Calculator extends JFrame {
                         String deletedText=screen.getText().substring(0,screen.getText().length()-1);
                         screen.setText(deletedText);
                     }
+                    //----------------------------------------------------------------------
                     if(screen.getText().contains("+")&&screen.getText().contains("=")){
                         int index=screen.getText().indexOf("+");
-                        int num1=Integer.parseInt(screen.getText().substring(0,index));
-                        int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
-                        int sum=num1+num2;
-                        screen.setText(Integer.toString(sum));
+                        if(screen.getText().substring(0,index).contains(".")||screen.getText().substring(index+1,screen.getText().length()-1).contains(".")){
+                            double num1=Double.parseDouble(screen.getText().substring(0,index));
+                            double num2=Double.parseDouble(screen.getText().substring(index+1,screen.getText().length()-1));
+                            double sum=num1+num2;
+                            screen.setText(Double.toString(sum));
+                        }
+                        else{
+                            int num1=Integer.parseInt(screen.getText().substring(0,index));
+                            int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
+                            int sum=num1+num2;
+                            screen.setText(Double.toString(sum));
+                        }
+                        
                     }
+                    //----------------------------------------------------------------------
                     else if(screen.getText().contains("-")&&screen.getText().contains("=")){
-                        int indis=screen.getText().indexOf("-");
-                        int num1=Integer.parseInt(screen.getText().substring(0,indis));
-                        int num2=Integer.parseInt(screen.getText().substring(indis+1,screen.getText().length()-1));
-                        int dif=num1-num2;
-                        screen.setText(Integer.toString(dif));
+                        int index=screen.getText().indexOf("-");
+                        if(screen.getText().substring(0,index).contains(".")||screen.getText().substring(index+1,screen.getText().length()-1).contains(".")){
+                            double num1=Double.parseDouble(screen.getText().substring(0,index));
+                            double num2=Double.parseDouble(screen.getText().substring(index+1,screen.getText().length()-1));
+                            double dif=num1-num2;
+                            screen.setText(Double.toString(dif));
+                        }
+                        else{
+                            int num1=Integer.parseInt(screen.getText().substring(0,index));
+                            int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
+                            int dif=num1-num2;
+                            screen.setText(Double.toString(dif));
+                        }
                     }
+                    //----------------------------------------------------------------------
                     else if(screen.getText().contains("x")&&screen.getText().contains("=")){
-                        int indis=screen.getText().indexOf("x");
-                        int num1=Integer.parseInt(screen.getText().substring(0,indis));
-                        int num2=Integer.parseInt(screen.getText().substring(indis+1,screen.getText().length()-1));
-                        int mul=num1*num2;
-                        screen.setText(Integer.toString(mul));
+                        int index=screen.getText().indexOf("x");
+                        if(screen.getText().substring(0,index).contains(".")||screen.getText().substring(index+1,screen.getText().length()-1).contains(".")){
+                            double num1=Double.parseDouble(screen.getText().substring(0,index));
+                            double num2=Double.parseDouble(screen.getText().substring(index+1,screen.getText().length()-1));
+                            double mul=num1*num2;
+                            screen.setText(Double.toString(mul));
+                        }
+                        else{
+                            int num1=Integer.parseInt(screen.getText().substring(0,index));
+                            int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
+                            int mul=num1*num2;
+                            screen.setText(Double.toString(mul));
+                        }
                     }
+                    //----------------------------------------------------------------------
                     else if(screen.getText().contains("/")&&screen.getText().contains("=")){
-                        int indis=screen.getText().indexOf("/");
-                        double num1=Integer.parseInt(screen.getText().substring(0,indis));
-                        double num2=Integer.parseInt(screen.getText().substring(indis+1,screen.getText().length()-1));
-                        double div=num1/num2;
-                        screen.setText(Double.toString(div));
+                        int index=screen.getText().indexOf("/");
+                        if(screen.getText().substring(0,index).contains(".")||screen.getText().substring(index+1,screen.getText().length()-1).contains(".")){
+                           double num1=Double.parseDouble(screen.getText().substring(0,index));
+                           double num2=Double.parseDouble(screen.getText().substring(index+1,screen.getText().length()-1));
+                           double div=num1/num2;
+                           screen.setText(Double.toString(div));
+                        }                            
+                        else{      
+                           double num1=Double.parseDouble(screen.getText().substring(0,index));
+                           double num2=Double.parseDouble(screen.getText().substring(index+1,screen.getText().length()-1));
+                           if(num1%num2==0){
+                              int div=(int)(num1/num2);
+                              screen.setText(Integer.toString(div));
+                           }
+                           else{
+                               double div=num1/num2;
+                               screen.setText(Double.toString(div));
+                           }
+                        }
                     }
 
                 }
             });
             button.setBackground(Color.white);
+            button.setFont(new Font("Arial",Font.PLAIN,40));
             
             gbc.gridx = gridx;
             gbc.gridy = gridy;
