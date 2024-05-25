@@ -5,15 +5,42 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Calculator extends JFrame {
-    
-    public static int equalsSignCounter(String str){
-        int esC = 0;
-        for(int i=0; i<str.length();i++){
-            if(str.charAt(i)=='=') esC++;
-        }
-        return esC;
-    }
 
+    public static int equalsCounter(String str){
+        int eC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='=') eC++;
+        }
+        return eC;
+    }
+    public static int plusCounter(String str){
+        int pC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='+') pC++;
+        }
+        return pC;
+    }
+    public static int minusCounter(String str){
+        int mC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='-') mC++;
+        }
+        return mC;
+    }
+    public static int slashCounter(String str){
+        int sC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='/') sC++;
+        }
+        return sC;
+    }
+    public static int xCounter(String str){
+        int xC = 0;
+        for(int i=0; i<str.length();i++){
+            if(str.charAt(i)=='x') xC++;
+        }
+        return xC;
+    }
     public Calculator() {
         setTitle("Calculator");
         setSize(300, 400);
@@ -26,8 +53,8 @@ public class Calculator extends JFrame {
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-                
-        JTextField screen=new JTextField();
+        
+        JTextField screen=new JTextField();        
         screen.setPreferredSize(new Dimension(240,60));
         screen.setEditable(false);
         screen.setFont(new Font("Arial",Font.PLAIN,20));
@@ -36,7 +63,7 @@ public class Calculator extends JFrame {
         gbc.gridwidth=4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel.add(screen,gbc);
-         
+        
         String[] buttonLabels={
             "1","2","3","+",
             "4","5","6","-",
@@ -56,7 +83,8 @@ public class Calculator extends JFrame {
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String buttonText = ((JButton)e.getSource()).getText();
-                    if(buttonText!="<"&&equalsSignCounter(screen.getText())<1)
+                    if(buttonText!="<"&&equalsCounter(screen.getText())<1&&plusCounter(screen.getText())<=1&&minusCounter(screen.getText())<=1
+                            &&slashCounter(screen.getText())<=1&&xCounter(screen.getText())<=1)
                         screen.setText(screen.getText()+buttonText);
                     else {
                         String deletedText=screen.getText().substring(0,screen.getText().length()-1);
@@ -75,7 +103,7 @@ public class Calculator extends JFrame {
                             int num1=Integer.parseInt(screen.getText().substring(0,index));
                             int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
                             int sum=num1+num2;
-                            screen.setText(Double.toString(sum));
+                            screen.setText(Integer.toString(sum));
                         }
                         
                     }
@@ -92,7 +120,7 @@ public class Calculator extends JFrame {
                             int num1=Integer.parseInt(screen.getText().substring(0,index));
                             int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
                             int dif=num1-num2;
-                            screen.setText(Double.toString(dif));
+                            screen.setText(Integer.toString(dif));
                         }
                     }
                     //----------------------------------------------------------------------
@@ -108,7 +136,7 @@ public class Calculator extends JFrame {
                             int num1=Integer.parseInt(screen.getText().substring(0,index));
                             int num2=Integer.parseInt(screen.getText().substring(index+1,screen.getText().length()-1));
                             int mul=num1*num2;
-                            screen.setText(Double.toString(mul));
+                            screen.setText(Integer.toString(mul));
                         }
                     }
                     //----------------------------------------------------------------------
@@ -160,5 +188,7 @@ public class Calculator extends JFrame {
         Calculator cal = new Calculator();
         cal.setVisible(true);
     }
+
+    
 
 }
